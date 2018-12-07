@@ -46,7 +46,7 @@ class Output:
         for field in ['data_dump_file', 'algebraic_inverse_file',
                       'estimated_reflectance_file', 'modeled_radiance_file',
                       'posterior_errors_file', 'estimated_state_file', 'path_radiance_file',
-                      'atmospheric_coefficients_file', 'plot_directory_file',
+                      'atmospheric_coefficients_file', 'plot_directory',
                       'radiometry_correction_file', 'measured_radiance_file']:
             if not hasattr(self.output, field):
                 setattr(self.output, field, None)
@@ -158,13 +158,11 @@ class Output:
         savemat(fname, mdict)
 
     def plot_spectrum(self, x, rdn_meas, geom, fname=None):
-
         if fname is None and hasattr(self.output, 'plot_directory') and\
                 self.output.plot_directory is not None:
             fname = self.output.plot_directory+'/frame_%i.png' % self.iv.counts
         else:
             return
-
         plt.cla()
         xmin, xmax = min(self.wl), max(self.wl)
         fig = plt.subplots(1, 2, figsize=(10, 5))
@@ -174,7 +172,6 @@ class Output:
             idx = s.where(s.logical_and(self.wl > lo, self.wl < hi))[0]
             p1 = plt.plot(self.iv.fm.wl[idx], rdn_meas[idx],
                           color=[0.7, 0.2, 0.2], linewidth=2)
-            plt.hold(True)
             p2 = plt.plot(self.iv.fm.wl, rdn_est, color='k', linewidth=2)
         plt.title("Radiance")
         ymax = max(rdn_meas)*1.25
@@ -196,7 +193,7 @@ class Output:
                 p1 = plt.plot(self.ref_wl[idx], self.ref_rfl[idx],
                               color=[0.7, 0.2, 0.2], linewidth=2)
                 ymax = max(max(self.ref_rfl[idx]*1.2), ymax)
-                plt.hold(True)
+                
             # black line
             idx = s.where(s.logical_and(self.wl > lo, self.wl < hi))[0]
             p2 = plt.plot(self.iv.fm.wl[idx], lrfl_est[idx],
