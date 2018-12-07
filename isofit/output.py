@@ -19,6 +19,8 @@
 #
 
 import scipy as s
+import matplotlib
+matplotlib.use('agg')
 import pylab as plt
 from common import spectrumLoad, spectrumResample
 from scipy.linalg import inv, norm, sqrtm, det

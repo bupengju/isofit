@@ -33,7 +33,6 @@ from scipy.signal import convolve, gaussian, medfilt
 from scipy.interpolate import interp1d
 from scipy.optimize import minimize_scalar as min1d
 from scipy.stats import multivariate_normal as mvn
-import pylab as plt
 import multiprocessing
 import subprocess
 from rt_lut import TabularRT, FileExistsError, spawn_rt
