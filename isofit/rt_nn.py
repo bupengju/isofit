@@ -78,11 +78,6 @@ class NeuralNetworkRT:
         self.biases1 = s.load(self.biases1_file)
         self.biases2 = s.load(self.biases2_file)
 
-        print('self.weights1.shape: "%s"'%str((self.weights1.shape)))
-        print('self.weights2.shape: "%s"'%str((self.weights2.shape)))
-        print('self.biases1.shape: "%s"'%str((self.biases1.shape)))
-        print('self.biases2.shape: "%s"'%str((self.biases2.shape)))
-        
         solar =  s.loadtxt(self.solar_file)
         self.solar_irr = spectrumResample(solar[:,1], solar[:,0], self.wl, 
                 self.fwhm)
