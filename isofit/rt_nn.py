@@ -16,7 +16,7 @@
 #
 # ISOFIT: Imaging Spectrometer Optimal FITting
 # Author: David R Thompson, david.r.thompson@jpl.nasa.gov
-#
+# Author: Brian D Bue, brian.d.bue@jpl.nasa.gov
 
 import pandas as pd
 import re
@@ -44,7 +44,10 @@ eps = 1e-5  # used for finite difference derivative calculations
 
 
 class NeuralNetworkRT:
-    """A model of photon transport including the atmosphere."""
+    """
+    A neural network emulator of a model of photon transport including
+    the atmosphere.
+    """
 
     def __init__(self, config, instrument):
         self.weights, self.biases = [], []
