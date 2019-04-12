@@ -1,0 +1,22 @@
+atmosphere_file midlatitude_summer
+source solar ${LIBRADTRAN_BASE}/data/solar_flux/kurudz_0.1nm.dat
+albedo {albedo}
+rte_solver disort
+pseudospherical
+umu {umu}
+phi {phi_degrees}
+phi0 180.0
+zout 20.03
+altitude 0.0
+time 2015 10 26 17 31 48
+mol_modify O3 300 DU
+latitude N 33.5
+longitude W 118.13
+output_user lambda uu eglo spher_alb
+mol_abs_param reptran fine
+mol_modify H2O {h2o_mm} MM
+crs_model rayleigh bodhaine
+wavelength 350 1060 
+aerosol_default
+aerosol_visibility {aerosol_visibility}
+quiet
