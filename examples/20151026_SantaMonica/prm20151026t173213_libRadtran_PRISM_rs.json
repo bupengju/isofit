@@ -8,19 +8,19 @@
 	"h2o":[0, 0.5, 1.0, 1.5, 2.0, 2.5]
     },
     "inputvector_order": ["phi","umu","aod","h2o"],
-    "template": "${ISFIT_BASE}/examples/20151026_SantaMonica/prm20151026t173213.inp",
+    "template": "${ISOFIT_BASE}/examples/20151026_SantaMonica/prm20151026t173213.inp",
     
-    "full_irr_file":"${ISFIT_BASE}/data/kurudz_0.1nm.dat",
+    "full_irr_file":"${ISOFIT_BASE}/data/kurudz_0.1nm.dat",
     "lrt":"${LIBRADTRAN_BASE}/bin/uvspec",
     "lrtoutdir":"${LIBRADTRAN_BASE}/training/",
-    "logdir":"${ISFIT_BASE}/examples/20151026_SantaMonica/logs/",
-    "rtdir":"${ISFIT_BASE}/examples/20151026_SantaMonica/rt/",
-    "trainfile":"${ISFIT_BASE}/examples/20151026_SantaMonica/prm20151026t173213_libRadtran.mat",
-    "trainfile_rs":"${ISFIT_BASE}/examples/20151026_SantaMonica/prm20151026t173213_libRadtran_PRISM_rs.mat",
+    "logdir":"${ISOFIT_BASE}/examples/20151026_SantaMonica/logs/",
+    "rtdir":"${ISOFIT_BASE}/examples/20151026_SantaMonica/rt/",
+    "trainfile":"${ISOFIT_BASE}/examples/20151026_SantaMonica/prm20151026t173213_libRadtran.mat",
+    "trainfile_rs":"${ISOFIT_BASE}/examples/20151026_SantaMonica/prm20151026t173213_libRadtran_PRISM_rs.mat",
     "fullmodel_file":
-    "${ISFIT_BASE}/examples/20151026_SantaMonica/prm20151026t173213_fullmodel.mat",
+    "${ISOFIT_BASE}/examples/20151026_SantaMonica/prm20151026t173213_fullmodel.mat",
     "wavelength_file":
-    "${ISFIT_BASE}/examples/20151026_SantaMonica/20140221_PRISM_wavelengths_truncated.txt",
+    "${ISOFIT_BASE}/examples/20151026_SantaMonica/20140221_PRISM_wavelengths_truncated.txt",
     "partialmodel_prefix":
-    "${ISFIT_BASE}/examples/20151026_SantaMonica/tf/prm20151026t173213_model"
+    "${ISOFIT_BASE}/examples/20151026_SantaMonica/tf/prm20151026t173213_model"
 }
