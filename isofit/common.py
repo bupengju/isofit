@@ -198,7 +198,7 @@ def recursive_replace(obj, key, val):
 
 def get_absorption(wl, absfile):
     '''Calculate water and ice absorption coefficients using indices of
-  refraction, and interpolate them to new wavelengths (user specifies nm)'''
+    refraction, and interpolate them to new wavelengths (user specifies nm)'''
 
     # read the indices of refraction
     q = s.loadtxt(absfile, delimiter=',')
@@ -216,34 +216,38 @@ def get_absorption(wl, absfile):
     ice_abscf_intrp = s.interp(wl, wl_orig_nm, ice_abscf)
     return water_abscf_intrp, ice_abscf_intrp
 
-
 def json_load_ascii(filename, shell_replace=True):
     """Load a hierarchical structure, convert all unicode to ASCII and
     expand environment variables"""
-
     def recursive_reincode(j):
         if isinstance(j, dict):
             for key, value in j.items():
-                j[key] = recursive_reincode(value)
-            return j
-        elif isinstance(j, list):
-            for i, k in enumerate(j):
+                if isinstance(key, unicode):
+                    key2 = key.encode('ascii')
+                    del j[key]
+                    j[key2] = recursive_reincode(value)
+                else:
+                    j[key] = recursive_reincode(value)
+                return j
+        elif isinstance(j, list): 
+            for i,k in enumerate(j):
                 j[i] = recursive_reincode(k)
             return j
-        elif isinstance(j, tuple):
+        elif isinstance(j, tuple): 
             return tuple([recursive_reincode(k) for k in j])
         else:
+            if isinstance(j, unicode):
+                j = j.encode('ascii')
             if shell_replace and type(j) is str:
                 try:
-                    j = expandvars(j)
+                    j = expandvars(j) 
                 except IndexError:
-                    pass
-            return j
+                    pass 
+        return j
 
-    with open(filename, 'r') as fin:
+    with open(filename,'r') as fin:
         j = json.load(fin)
-        return recursive_reincode(j)
-
+    return recursive_reincode(j)
 
 def expand_all_paths(config, configdir):
     """Expand any config entry containing the string 'file' into 
@@ -289,6 +293,20 @@ def expand_path(directory, subpath):
         return subpath
     return os.path.join(directory, subpath)
 
+def load_wavelength_file(wavelengthfile):
+    # loads the wavelength text file and returns
+    # wavelenths and fwhm
+    print('wavelengthfile: "%s"'%str((wavelengthfile)))
+    wl_data = s.loadtxt(wavelengthfile)
+    wl      = wl_data[:,1]
+    fwhm    = wl_data[:,2]
+
+    # convert to microns?
+    if (wl<100).all(): 
+        wl   = wl * 1000.0
+        fwhm = fwhm * 1000.0
+
+    return wl, fwhm
 
 def rdn_translate(wvn, rdn_wvn):
     """Translate radiance out of wavenumber space"""
